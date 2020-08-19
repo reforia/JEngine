@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox", "Sandbox\Sandbox.vcxproj", "{39090B2C-DC6D-4506-B564-8EF984B0D963}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JEngine", "JEngine\JEngine.vcxproj", "{E452DECC-BC65-4C9C-82F5-0C7CB841F454}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E452DECC-BC65-4C9C-82F5-0C7CB841F454}.Debug|x64.ActiveCfg = Debug|x64
+		{E452DECC-BC65-4C9C-82F5-0C7CB841F454}.Debug|x64.Build.0 = Debug|x64
+		{E452DECC-BC65-4C9C-82F5-0C7CB841F454}.Release|x64.ActiveCfg = Release|x64
+		{E452DECC-BC65-4C9C-82F5-0C7CB841F454}.Release|x64.Build.0 = Release|x64
+		{39090B2C-DC6D-4506-B564-8EF984B0D963}.Debug|x64.ActiveCfg = Debug|x64
+		{39090B2C-DC6D-4506-B564-8EF984B0D963}.Debug|x64.Build.0 = Debug|x64
+		{39090B2C-DC6D-4506-B564-8EF984B0D963}.Release|x64.ActiveCfg = Release|x64
+		{39090B2C-DC6D-4506-B564-8EF984B0D963}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A57857F-9326-4AC2-8B14-01BECE997EFE}
+	EndGlobalSection
+EndGlobal
