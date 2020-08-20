@@ -60,6 +60,7 @@
       <PreprocessorDefinitions>JE_PLATFORM_WINDOWS;JE_BUILD_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)JEngine\ThirdParty\SpdLog\include;$(SolutionDir)JEngine\src\JEngine\Public</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -75,6 +76,7 @@
       <PreprocessorDefinitions>JE_PLATFORM_WINDOWS;JE_BUILD_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)JEngine\ThirdParty\SpdLog\include;$(SolutionDir)JEngine\src\JEngine\Public</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -85,12 +87,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\JEngine.h" />
-    <ClInclude Include="src\JEngine\Application.h" />
-    <ClInclude Include="src\JEngine\Core.h" />
-    <ClInclude Include="src\JEngine\EntryPoint.h" />
+    <ClInclude Include="src\JEngine\Public\Application.h" />
+    <ClInclude Include="src\JEngine\Public\Core.h" />
+    <ClInclude Include="src\JEngine\Public\EntryPoint.h" />
+    <ClInclude Include="src\JEngine\Public\Log.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\JEngine\Application.cpp" />
+    <ClCompile Include="src\JEngine\Private\Application.cpp" />
+    <ClCompile Include="src\JEngine\Private\Log.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
