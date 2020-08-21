@@ -1,3 +1,4 @@
+// THE ENGINE CLASS IS DEFINED HERE
 #pragma once
 
 #include "Core.h"

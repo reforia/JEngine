@@ -1,5 +1,4 @@
-//This is the entry point of the Engine
-
+//CORE ENGINE ENTRY POINT
 #pragma once
 
 #ifdef JE_PLATFORM_WINDOWS
@@ -8,12 +7,13 @@ extern JEngine::Application* JEngine::CreateApplication();
 int main(int argc, char** argv) {
 	JEngine::Log::Init();
 	JE_CORE_WARN("Initialized Log!");
-	int a = 5;
-	JE_INFO("Hello! var = {0}",a);
-
-
+	// Let the actual project to implement the CreateApplication and return the app*
 	auto app = JEngine::CreateApplication();
+	// Run the app just created
 	app->Run();
+	// While the app finished running, release the memory
+	// Currently it does not work without the implementation of exit()
+	// since Run() contains a while(true) loop
 	delete app;
 }
 #else

@@ -1,3 +1,6 @@
 [submodule "JEngine/ThirdParty/SpdLog"]
 	path = JEngine/ThirdParty/SpdLog
 	url = https://github.com/gabime/spdlog
+[submodule "JEngine/ThirdParty/GLFW"]
+	path = JEngine/ThirdParty/GLFW
+	url = https://github.com/TheCherno/GLFW

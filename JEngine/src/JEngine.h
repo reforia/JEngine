@@ -2,9 +2,9 @@
 
 
 // FOR USE BY OTHER APPLICATIONS
-#include "JEngine/Public/Application.h"
-#include "JEngine/Public/Log.h"
+#include "Public/Application.h"
+#include "Public/Log.h"
 
 //------MAIN ENTRY-------
-#include "JEngine/Public/EntryPoint.h"
+#include "Public/EntryPoint.h"
 //------MAIN ENTRY-------

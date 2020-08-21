@@ -1,3 +1,5 @@
+// CORE ENGINE BEHAVIOR DEPENDS ON PLATFORMS
+// CORE MACROS USED ALLOVER THE ENGINE
 #pragma once
 
 #ifdef JE_PLATFORM_WINDOWS
@@ -9,3 +11,5 @@
 #else
 	#error JENGINE only support Windows 64-bit for now
 #endif
+
+#define BIT(x) (1 << x)

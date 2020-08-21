@@ -1,11 +1,12 @@
+// THE LOG SYSTEM
 #pragma once
-
-#include <memory>
 
 #include "Core.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
 
 namespace JEngine {
+	// Core Logger Class, Contains Core Logger and Client Logger
 	class JE_API Log {
 	public:
 		static void Init();
