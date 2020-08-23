@@ -4,11 +4,23 @@
     <Filter Include="Private">
       <UniqueIdentifier>{001F8D23-6CFE-0BBF-7516-9795E1747220}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Private\Layer">
+      <UniqueIdentifier>{CC5BE199-381C-5DD0-0157-A64D6DD6A1AC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Platform">
+      <UniqueIdentifier>{543B6E55-4034-8DA7-6966-722C55BE6CB3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Public">
       <UniqueIdentifier>{8480F8CA-7022-23A1-59DD-36F5451EAAF1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Public\Events">
       <UniqueIdentifier>{E8EFCF4B-54B0-4B82-1DEB-94FF896A905E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Layer">
+      <UniqueIdentifier>{50D09867-3C33-280C-E5B8-60C2D1FAF38E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Platform">
+      <UniqueIdentifier>{5891A99B-C41C-1760-CD2D-9A5439387360}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -37,7 +49,19 @@
     <ClInclude Include="src\Public\JE_PCH.h">
       <Filter>Public</Filter>
     </ClInclude>
+    <ClInclude Include="src\Public\Layer\Layer.h">
+      <Filter>Public\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Public\Layer\LayerStack.h">
+      <Filter>Public\Layer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Public\Log.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Public\Platform\WindowsWindow.h">
+      <Filter>Public\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Public\Window.h">
       <Filter>Public</Filter>
     </ClInclude>
   </ItemGroup>
@@ -48,8 +72,17 @@
     <ClCompile Include="src\Private\JE_PCH.cpp">
       <Filter>Private</Filter>
     </ClCompile>
+    <ClCompile Include="src\Private\Layer\Layer.cpp">
+      <Filter>Private\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Private\Layer\LayerStack.cpp">
+      <Filter>Private\Layer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Private\Log.cpp">
       <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Private\Platform\WindowsWindow.cpp">
+      <Filter>Private\Platform</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

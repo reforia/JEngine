@@ -5,15 +5,19 @@
 extern JEngine::Application* JEngine::CreateApplication();
 
 int main(int argc, char** argv) {
+
 	JEngine::Log::Init();
 	JE_CORE_WARN("Initialized Log!");
-	// Let the actual project to implement the CreateApplication and return the app*
+
+	// Let the actual project to implement the CreateApplication() and return the app*
 	auto app = JEngine::CreateApplication();
+
 	// Run the app just created
 	app->Run();
+
 	// While the app finished running, release the memory
-	// Currently it does not work without the implementation of exit()
-	// since Run() contains a while(true) loop
+	// Call ~(), and don't necessarily need to free the pointer as it will be destroyed
+	// when main() returns anyway.
 	delete app;
 }
 #else

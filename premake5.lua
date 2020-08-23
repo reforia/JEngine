@@ -64,14 +64,18 @@ project "JEngine"
 
     filter "configurations:Debug"
         defines "JE_DEBUG"
+        defines "JE_ENABLE_ASSERTS"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "JE_DEBUG"
+        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Distribution"
         defines "JE_DISTRIBUTION"
+        buildoptions "/MD"
         optimize "On"
         
 project "Sandbox"
@@ -111,12 +115,16 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "JE_DEBUG"
+        defines "JE_ENABLE_ASSERTS"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "JE_RELEASE"
+        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Distribution"
         defines "JE_DISTRIBUTION"
+        buildoptions "/MD"
         optimize "On"

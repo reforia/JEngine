@@ -79,11 +79,12 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>JE_PCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>JE_PLATFORM_WINDOWS;JE_BUILD_DLL;JE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>JE_PLATFORM_WINDOWS;JE_BUILD_DLL;JE_DEBUG;JE_ENABLE_ASSERTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>ThirdParty\SpdLog\include;src\Public;ThirdParty\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -109,6 +110,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -135,6 +137,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -158,14 +161,21 @@
     <ClInclude Include="src\Public\Events\KeyEvent.h" />
     <ClInclude Include="src\Public\Events\MouseEvent.h" />
     <ClInclude Include="src\Public\JE_PCH.h" />
+    <ClInclude Include="src\Public\Layer\Layer.h" />
+    <ClInclude Include="src\Public\Layer\LayerStack.h" />
     <ClInclude Include="src\Public\Log.h" />
+    <ClInclude Include="src\Public\Platform\WindowsWindow.h" />
+    <ClInclude Include="src\Public\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Private\Application.cpp" />
     <ClCompile Include="src\Private\JE_PCH.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Private\Layer\Layer.cpp" />
+    <ClCompile Include="src\Private\Layer\LayerStack.cpp" />
     <ClCompile Include="src\Private\Log.cpp" />
+    <ClCompile Include="src\Private\Platform\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="ThirdParty\GLFW\GLFW.vcxproj">

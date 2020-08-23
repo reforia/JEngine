@@ -1,6 +1,7 @@
 // THE EVENT ABSTRACT CLASS AS WELL AS EVENTDISPATCHER
 #pragma once
 
+#include "JE_PCH.h"
 #include "Core.h"
 
 namespace JEngine {
@@ -22,12 +23,15 @@ namespace JEngine {
 	};
 
 	//Event Construction Macros
-	//What does the ## and # do?
-	//Why do we need both of them?
+	//# convert a sentence to string
+	//## connects 2 sentences
+	//statics is used even when Event has not instantiated
 #define EVENT_CLASS_TYPE(type) static EventType GetStaticType() {return EventType::##type;}\
 								virtual EventType GetEventType() const override {return GetStaticType();}\
 								virtual const char* GetName() const override {return #type;}
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override {return category;}
+	//Event Bind Macros
+#define EVENT_BIND_FUNCTION(function) std::bind(&function, this, std::placeholders::_1)
 
 	class JE_API Event {
 	public:
@@ -41,7 +45,8 @@ namespace JEngine {
 		inline virtual bool IsInCategory(EventCategory category) {
 			return GetCategoryFlags() & category;
 		}
-	protected:
+
+	public:
 		bool m_handled = false;
 	};
 

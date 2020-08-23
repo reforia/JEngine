@@ -65,7 +65,7 @@ namespace JEngine
 	{
 	public:
 		MouseButtonPressedEvent(int button)
-			:m_MouseButton(button){}
+			:MouseButtonEvent(button){}
 
 		std::string ToString() const override {
 			std::stringstream ss;
@@ -80,7 +80,7 @@ namespace JEngine
 	{
 	public:
 		MouseButtonReleasedEvent(int button)
-			:m_MouseButton(button) {}
+			:MouseButtonEvent(button){}
 
 		std::string ToString() const override {
 			std::stringstream ss;

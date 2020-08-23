@@ -8,7 +8,7 @@ namespace JEngine
 	class JE_API KeyEvent : public Event 
 	{
 	public:
-		inline int GetKeyCode() {return m_KeyCode};
+		inline int GetKeyCode() { return m_KeyCode; };
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 	protected:
@@ -22,13 +22,13 @@ namespace JEngine
 	{
 	public:
 		KeyPressedEvent(int KeyCode, int RepeatCount)
-			:m_KeyCode(KeyCode), m_RepeatCount(RepeatCount) {}
+			:KeyEvent(KeyCode),m_RepeatCount(RepeatCount){}
 
 		inline int GetRepeatCount() { return m_RepeatCount; };
 
 		std::string ToString() const override 
 		{
-			std:stringstream ss;
+			std::stringstream ss;
 			ss << "KeyPressedEvent: " << m_KeyCode << "(" << m_RepeatCount << " Repeats)";
 			return ss.str();
 		}
@@ -41,12 +41,12 @@ namespace JEngine
 	class JE_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
-		KeyPressedEvent(int KeyCode)
-			:m_KeyCode(KeyCode) {}
+		KeyReleasedEvent(int KeyCode)
+			:KeyEvent(KeyCode){}
 
 		std::string ToString() const override
 		{
-		std:stringstream ss;
+			std::stringstream ss;
 			ss << "KeyReleasedEvent: " << m_KeyCode;
 			return ss.str();
 		}
