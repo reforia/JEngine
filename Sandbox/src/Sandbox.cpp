@@ -22,6 +22,7 @@ class Sandbox : public JEngine::Application {
 public:
 	Sandbox() {
 		PushLayer(new ExampleLayer());
+		PushOverlay(new JEngine::ImguiLayer());
 	}
 
 	~Sandbox() {

@@ -5,7 +5,12 @@
 
 namespace JEngine {
 
+	Application* Application::s_Instance = nullptr;
+
 	Application::Application() {
+		JE_CORE_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
+
 		// Create default JEngine Editor Window
 		m_Window = std::unique_ptr<Window>(Window::CreateJEWindow());
 		m_Window->SetEventCallback(EVENT_BIND_FUNCTION(Application::OnEvent));
@@ -28,11 +33,13 @@ namespace JEngine {
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
 		m_LayerStack.PushOverlay(overlay);
+		overlay->OnAttach();
 	}
 
 	Application::~Application() {

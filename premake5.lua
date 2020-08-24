@@ -1,5 +1,6 @@
 workspace "JEngine"
     architecture "x64"
+    startproject "Sandbox"
 
     configurations
     {
@@ -14,14 +15,17 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "JEngine/ThirdParty/GLFW/include"
 IncludeDir["Glad"] = "JEngine/ThirdParty/Glad/include"
+IncludeDir["Imgui"] = "JEngine/ThirdParty/imgui"
 
 include "JEngine/ThirdParty/GLFW"
 include "JEngine/ThirdParty/Glad"
+include "JEngine/ThirdParty/imgui"
 
 project "JEngine"
     location "JEngine"
     kind "SharedLib"
     language "C++"
+    staticruntime "off"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
@@ -40,19 +44,20 @@ project "JEngine"
         "%{prj.name}/ThirdParty/SpdLog/include",
         "%{prj.name}/src/Public",
         "%{IncludeDir.GLFW}",
-        "%{IncludeDir.Glad}"
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.Imgui}"
     }
 
     links
     {
         "Glad",
         "GLFW",
+        "Imgui",
         "opengl32.lib"
     }
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines
@@ -64,29 +69,29 @@ project "JEngine"
 
         postbuildcommands
         {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+            ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
         }
 
     filter "configurations:Debug"
         defines "JE_DEBUG"
-        defines "JE_ENABLE_ASSERTS"
-        buildoptions "/MDd"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
-        defines "JE_DEBUG"
-        buildoptions "/MD"
+        defines "JE_RELEASE"
+        runtime "Release"
         optimize "On"
 
     filter "configurations:Distribution"
         defines "JE_DISTRIBUTION"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
         
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
+    staticruntime "off"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
@@ -110,7 +115,6 @@ project "Sandbox"
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines
@@ -120,16 +124,15 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "JE_DEBUG"
-        defines "JE_ENABLE_ASSERTS"
-        buildoptions "/MDd"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
         defines "JE_RELEASE"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
 
     filter "configurations:Distribution"
         defines "JE_DISTRIBUTION"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"

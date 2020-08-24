@@ -53,4 +53,20 @@ namespace JEngine
 
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
+
+	class JE_API KeyTypeEvent : public KeyEvent
+	{
+	public:
+		KeyTypeEvent(int KeyCode)
+			:KeyEvent(KeyCode) {}
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypeEvent: " << m_KeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyType)
+	};
 }

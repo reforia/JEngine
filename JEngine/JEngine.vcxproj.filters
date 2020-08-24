@@ -10,6 +10,12 @@
     <Filter Include="Private\Platform">
       <UniqueIdentifier>{543B6E55-4034-8DA7-6966-722C55BE6CB3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Private\Platform\OpenGL">
+      <UniqueIdentifier>{085EB4C1-7495-FC58-7D9F-607CE9552352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Platform\Windows">
+      <UniqueIdentifier>{8EF95B50-7A1E-ABD0-A369-90608FEDA9EE}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Public">
       <UniqueIdentifier>{8480F8CA-7022-23A1-59DD-36F5451EAAF1}</UniqueIdentifier>
     </Filter>
@@ -21,6 +27,12 @@
     </Filter>
     <Filter Include="Public\Platform">
       <UniqueIdentifier>{5891A99B-C41C-1760-CD2D-9A5439387360}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Platform\OpenGL">
+      <UniqueIdentifier>{8C471A26-7841-4378-61AE-D9884D47A9E4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Platform\Windows">
+      <UniqueIdentifier>{92137F41-FE4A-C7D8-0755-2BFC730BEED1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +61,9 @@
     <ClInclude Include="src\Public\JE_PCH.h">
       <Filter>Public</Filter>
     </ClInclude>
+    <ClInclude Include="src\Public\Layer\ImguiLayer.h">
+      <Filter>Public\Layer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Public\Layer\Layer.h">
       <Filter>Public\Layer</Filter>
     </ClInclude>
@@ -58,8 +73,11 @@
     <ClInclude Include="src\Public\Log.h">
       <Filter>Public</Filter>
     </ClInclude>
-    <ClInclude Include="src\Public\Platform\WindowsWindow.h">
-      <Filter>Public\Platform</Filter>
+    <ClInclude Include="src\Public\Platform\OpenGL\ImguiOpenGL.h">
+      <Filter>Public\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Public\Platform\Windows\WindowsWindow.h">
+      <Filter>Public\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Public\Window.h">
       <Filter>Public</Filter>
@@ -72,6 +90,9 @@
     <ClCompile Include="src\Private\JE_PCH.cpp">
       <Filter>Private</Filter>
     </ClCompile>
+    <ClCompile Include="src\Private\Layer\ImguiLayer.cpp">
+      <Filter>Private\Layer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Private\Layer\Layer.cpp">
       <Filter>Private\Layer</Filter>
     </ClCompile>
@@ -81,8 +102,11 @@
     <ClCompile Include="src\Private\Log.cpp">
       <Filter>Private</Filter>
     </ClCompile>
-    <ClCompile Include="src\Private\Platform\WindowsWindow.cpp">
-      <Filter>Private\Platform</Filter>
+    <ClCompile Include="src\Private\Platform\OpenGL\ImguiOpenGL.cpp">
+      <Filter>Private\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Private\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Private\Platform\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

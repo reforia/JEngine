@@ -13,6 +13,10 @@
 	#error JENGINE only support Windows 64-bit for now
 #endif
 
+#ifdef JE_DEBUG
+	#define JE_ENABLE_ASSERTS
+#endif
+
 // ASSERTION
 #ifdef JE_ENABLE_ASSERTS
 	#ifdef JE_PLATFORM_WINDOWS

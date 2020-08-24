@@ -1,5 +1,5 @@
 #include "JE_PCH.h"
-#include "Platform/WindowsWindow.h"
+#include "Platform/Windows/WindowsWindow.h"
 
 #include "Events/ApplicationEvent.h"
 #include "Events/MouseEvent.h"
@@ -91,6 +91,13 @@ namespace JEngine
 					break;
 				}
 			}
+		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			KeyTypeEvent event(keycode);
+			data.EventCallback(event);
 		});
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
