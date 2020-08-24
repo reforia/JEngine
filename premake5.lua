@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include dirs relative to root folder (solution dir)
 IncludeDir = {}
 IncludeDir["GLFW"] = "JEngine/ThirdParty/GLFW/include"
+IncludeDir["Glad"] = "JEngine/ThirdParty/Glad/include"
 
 include "JEngine/ThirdParty/GLFW"
+include "JEngine/ThirdParty/Glad"
 
 project "JEngine"
     location "JEngine"
@@ -37,11 +39,13 @@ project "JEngine"
     {
         "%{prj.name}/ThirdParty/SpdLog/include",
         "%{prj.name}/src/Public",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}"
     }
 
     links
     {
+        "Glad",
         "GLFW",
         "opengl32.lib"
     }
@@ -54,7 +58,8 @@ project "JEngine"
         defines
         {
             "JE_PLATFORM_WINDOWS",
-            "JE_BUILD_DLL"
+            "JE_BUILD_DLL",
+            "GLFW_INCLUDE_NONE"
         }
 
         postbuildcommands

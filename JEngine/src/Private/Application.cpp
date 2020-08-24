@@ -1,7 +1,7 @@
 #include "JE_PCH.h"
 #include "Application.h"
 #include "Events/Event.h"
-#include "GLFW/glfw3.h"
+#include "glad/glad.h"
 
 namespace JEngine {
 
