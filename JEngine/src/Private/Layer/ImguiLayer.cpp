@@ -7,8 +7,8 @@
 #include "Application.h"
 #include "Events/Event.h"
 
-//TEMP
 #include "GLFW/glfw3.h"
+#include "KeyCodes.h"
 #include "glad/glad.h"
 
 namespace JEngine
@@ -34,27 +34,27 @@ namespace JEngine
 		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 
 		// TEMP
-		io.KeyMap[ImGuiKey_Tab] = GLFW_KEY_TAB;
-		io.KeyMap[ImGuiKey_LeftArrow] = GLFW_KEY_LEFT;
-		io.KeyMap[ImGuiKey_RightArrow] = GLFW_KEY_RIGHT;
-		io.KeyMap[ImGuiKey_UpArrow] = GLFW_KEY_UP;
-		io.KeyMap[ImGuiKey_DownArrow] = GLFW_KEY_DOWN;
-		io.KeyMap[ImGuiKey_PageUp] = GLFW_KEY_PAGE_UP;
-		io.KeyMap[ImGuiKey_PageDown] = GLFW_KEY_PAGE_DOWN;
-		io.KeyMap[ImGuiKey_Home] = GLFW_KEY_HOME;
-		io.KeyMap[ImGuiKey_End] = GLFW_KEY_END;
-		io.KeyMap[ImGuiKey_Insert] = GLFW_KEY_INSERT;
-		io.KeyMap[ImGuiKey_Delete] = GLFW_KEY_DELETE;
-		io.KeyMap[ImGuiKey_Backspace] = GLFW_KEY_BACKSPACE;
-		io.KeyMap[ImGuiKey_Space] = GLFW_KEY_SPACE;
-		io.KeyMap[ImGuiKey_Enter] = GLFW_KEY_ENTER;
-		io.KeyMap[ImGuiKey_Escape] = GLFW_KEY_ESCAPE;
-		io.KeyMap[ImGuiKey_A] = GLFW_KEY_A;
-		io.KeyMap[ImGuiKey_C] = GLFW_KEY_C;
-		io.KeyMap[ImGuiKey_V] = GLFW_KEY_V;
-		io.KeyMap[ImGuiKey_X] = GLFW_KEY_X;
-		io.KeyMap[ImGuiKey_Y] = GLFW_KEY_Y;
-		io.KeyMap[ImGuiKey_Z] = GLFW_KEY_Z;
+		io.KeyMap[ImGuiKey_Tab] = JE_KEY_TAB;
+		io.KeyMap[ImGuiKey_LeftArrow] = JE_KEY_LEFT;
+		io.KeyMap[ImGuiKey_RightArrow] = JE_KEY_RIGHT;
+		io.KeyMap[ImGuiKey_UpArrow] = JE_KEY_UP;
+		io.KeyMap[ImGuiKey_DownArrow] = JE_KEY_DOWN;
+		io.KeyMap[ImGuiKey_PageUp] = JE_KEY_PAGE_UP;
+		io.KeyMap[ImGuiKey_PageDown] = JE_KEY_PAGE_DOWN;
+		io.KeyMap[ImGuiKey_Home] = JE_KEY_HOME;
+		io.KeyMap[ImGuiKey_End] = JE_KEY_END;
+		io.KeyMap[ImGuiKey_Insert] = JE_KEY_INSERT;
+		io.KeyMap[ImGuiKey_Delete] = JE_KEY_DELETE;
+		io.KeyMap[ImGuiKey_Backspace] = JE_KEY_BACKSPACE;
+		io.KeyMap[ImGuiKey_Space] = JE_KEY_SPACE;
+		io.KeyMap[ImGuiKey_Enter] = JE_KEY_ENTER;
+		io.KeyMap[ImGuiKey_Escape] = JE_KEY_ESCAPE;
+		io.KeyMap[ImGuiKey_A] = JE_KEY_A;
+		io.KeyMap[ImGuiKey_C] = JE_KEY_C;
+		io.KeyMap[ImGuiKey_V] = JE_KEY_V;
+		io.KeyMap[ImGuiKey_X] = JE_KEY_X;
+		io.KeyMap[ImGuiKey_Y] = JE_KEY_Y;
+		io.KeyMap[ImGuiKey_Z] = JE_KEY_Z;
 
 		ImGui_ImplOpenGL3_Init("#version 410");
 	}
@@ -140,10 +140,10 @@ namespace JEngine
 		ImGuiIO& io = ImGui::GetIO();
 		io.KeysDown[e.GetKeyCode()] = true;
 
-		io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
-		io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
-		io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
-		io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+		io.KeyCtrl = io.KeysDown[JE_KEY_LEFT_CONTROL] || io.KeysDown[JE_KEY_RIGHT_CONTROL];
+		io.KeyShift = io.KeysDown[JE_KEY_LEFT_SHIFT] || io.KeysDown[JE_KEY_RIGHT_SHIFT];
+		io.KeyAlt = io.KeysDown[JE_KEY_LEFT_ALT] || io.KeysDown[JE_KEY_RIGHT_ALT];
+		io.KeySuper = io.KeysDown[JE_KEY_LEFT_SUPER] || io.KeysDown[JE_KEY_RIGHT_SUPER];
 
 		// Let other layers to respond this input event.
 		return false;

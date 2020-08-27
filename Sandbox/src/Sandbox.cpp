@@ -9,7 +9,7 @@ public:
 
 	void OnUpdate() override 
 	{
-		JE_INFO("Example Layer Updated!");
+		// JE_INFO("Example Layer Updated!");
 	}
 
 	void OnEvent(JEngine::Event& e) override

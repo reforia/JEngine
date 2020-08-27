@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "Events/Event.h"
 #include "glad/glad.h"
+#include "Input.h"
 
 namespace JEngine {
 
@@ -57,7 +58,10 @@ namespace JEngine {
 			// Update Objects Based on layer order
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
-
+			
+			// With input Polling, we can do things like:
+			// JE_CORE_TRACE("Is Key K pressed? {0}", Input::IsKeyDown(75));
+			
 			// Render Logic
 			m_Window->OnUpdate();
 		}
