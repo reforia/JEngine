@@ -6,7 +6,6 @@ namespace JEngine
 
 	LayerStack::LayerStack()
 	{
-		m_LayerInsertIt = m_LayerStack.begin();
 	}
 
 	LayerStack::~LayerStack()
@@ -17,7 +16,8 @@ namespace JEngine
 	
 	void LayerStack::PushLayer(Layer* layer)
 	{
-		m_LayerInsertIt = m_LayerStack.emplace(m_LayerInsertIt, layer);
+		m_LayerStack.emplace(m_LayerStack.begin() + m_LayerInsertItIndex, layer);
+		m_LayerInsertItIndex++;
 	}
 
 	void LayerStack::PopLayer(Layer* layer)
@@ -26,7 +26,7 @@ namespace JEngine
 		if (it != m_LayerStack.end())
 		{
 			m_LayerStack.erase(it);
-			m_LayerInsertIt--;
+			m_LayerInsertItIndex--;
 		}
 	}
 

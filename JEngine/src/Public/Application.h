@@ -6,6 +6,7 @@
 #include "Events/ApplicationEvent.h"
 #include "Window.h"
 #include "Layer/LayerStack.h"
+#include "Layer/ImguiLayer.h"
 
 namespace JEngine {
 	class JE_API Application 
@@ -28,6 +29,7 @@ namespace JEngine {
 
 	private:
 		std::unique_ptr<Window> m_Window;
+		ImguiLayer* m_ImguiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

@@ -3,6 +3,7 @@
 #include "Events/Event.h"
 #include "glad/glad.h"
 #include "Input.h"
+#include "Layer/ImguiLayer.h"
 
 namespace JEngine {
 
@@ -15,6 +16,9 @@ namespace JEngine {
 		// Create default JEngine Editor Window
 		m_Window = std::unique_ptr<Window>(Window::CreateJEWindow());
 		m_Window->SetEventCallback(EVENT_BIND_FUNCTION(Application::OnEvent));
+
+		m_ImguiLayer = new ImguiLayer();
+		PushOverlay(m_ImguiLayer);
 	}
 
 	void Application::OnEvent(Event& e) {
@@ -59,6 +63,13 @@ namespace JEngine {
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 			
+			m_ImguiLayer->begin();
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnImguiRender();
+			}
+			m_ImguiLayer->end();
+
 			// With input Polling, we can do things like:
 			// JE_CORE_TRACE("Is Key K pressed? {0}", Input::IsKeyDown(75));
 			

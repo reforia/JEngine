@@ -4,9 +4,9 @@
 [submodule "JEngine/ThirdParty/GLFW"]
 	path = JEngine/ThirdParty/GLFW
 	url = https://github.com/TheCherno/GLFW
-[submodule "JEngine/ThirdParty/imgui"]
-	path = JEngine/ThirdParty/imgui
-	url = https://github.com.cnpmjs.org/TheCherno/imgui
 [submodule "JEngine/ThirdParty/glm"]
 	path = JEngine/ThirdParty/glm
 	url = https://github.com/g-truc/glm
+[submodule "JEngine/ThirdParty/imgui"]
+	path = JEngine/ThirdParty/imgui
+	url = https://github.com/reforia/imgui

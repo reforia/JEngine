@@ -13,21 +13,12 @@ namespace JEngine
 		ImguiLayer();
 		~ImguiLayer();
 
-		void OnAttach();
-		void OnDetach();
-		void OnUpdate();
-		void OnEvent(Event& e);
+		virtual void OnAttach() override;
+		virtual void OnDetach() override;
+		virtual void OnImguiRender() override;
 
-	private:
-		bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& e);
-		bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e);
-		bool OnMouseMoveEvent(MouseMoveEvent& e);
-		bool OnMouseScrollEvent(MouseScrollEvent& e);
-		bool OnKeyPressedEvent(KeyPressedEvent& e);
-		bool OnKeyReleasedEvent(KeyReleasedEvent& e);
-		bool OnKeyTypeEvent(KeyTypeEvent& e);
-		bool OnWindowResizeEvent(WindowResizeEvent& e);
-
+		void begin();
+		void end();
 	private:
 		float m_Time = 0.0f;
 	};

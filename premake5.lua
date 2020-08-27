@@ -110,6 +110,7 @@ project "Sandbox"
     {
         "JEngine/ThirdParty/SpdLog/include",
         "JEngine/src",
+        "JEngine/ThirdParty",
         "%{IncludeDir.glm}"
     }
 

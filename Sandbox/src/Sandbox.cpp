@@ -1,5 +1,7 @@
 #include "JEngine.h"
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public JEngine::Layer
 {
 public:
@@ -22,7 +24,6 @@ class Sandbox : public JEngine::Application {
 public:
 	Sandbox() {
 		PushLayer(new ExampleLayer());
-		PushOverlay(new JEngine::ImguiLayer());
 	}
 
 	~Sandbox() {

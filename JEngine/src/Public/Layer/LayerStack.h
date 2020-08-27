@@ -28,6 +28,6 @@ namespace JEngine
 
 	private:
 		std::vector<Layer*> m_LayerStack;
-		std::vector<Layer*>::iterator m_LayerInsertIt;
+		unsigned int m_LayerInsertItIndex = 0;
 	};
 }

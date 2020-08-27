@@ -573,13 +573,13 @@
     <ClInclude Include="src\Public\Layer\LayerStack.h" />
     <ClInclude Include="src\Public\Log.h" />
     <ClInclude Include="src\Public\MouseButtonCode.h" />
-    <ClInclude Include="src\Public\Platform\OpenGL\ImguiOpenGL.h" />
     <ClInclude Include="src\Public\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Public\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Public\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Private\Application.cpp" />
+    <ClCompile Include="src\Private\ImguiBuild.cpp" />
     <ClCompile Include="src\Private\JE_PCH.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
@@ -587,7 +587,6 @@
     <ClCompile Include="src\Private\Layer\Layer.cpp" />
     <ClCompile Include="src\Private\Layer\LayerStack.cpp" />
     <ClCompile Include="src\Private\Log.cpp" />
-    <ClCompile Include="src\Private\Platform\OpenGL\ImguiOpenGL.cpp" />
     <ClCompile Include="src\Private\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Private\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
@@ -605,4 +604,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-</Project>
+</Project> 
