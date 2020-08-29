@@ -5,7 +5,7 @@
 #include "Events/MouseEvent.h"
 #include "Events/KeyEvent.h"
 
-#include "glad/glad.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace JEngine
 {
@@ -43,9 +43,10 @@ namespace JEngine
 		}
 
 		m_Window = glfwCreateWindow((int)m_WindowData.Width, (int)m_WindowData.Height, m_WindowData.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		JE_CORE_ASSERT(status, "Failed to initialize Glad!");
+
+		m_RenderContext = new OpenGLContext(m_Window);
+		m_RenderContext->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_WindowData);
 		SetVSync(true);
 
@@ -90,6 +91,8 @@ namespace JEngine
 					data.EventCallback(event);
 					break;
 				}
+				default:
+					break;
 			}
 		});
 
@@ -148,7 +151,7 @@ namespace JEngine
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_RenderContext->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

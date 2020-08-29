@@ -3,7 +3,6 @@
 
 #include "imgui.h"
 
-#define IMGUI_IMPL_API
 #include "examples/imgui_impl_opengl3.h"
 #include "examples/imgui_impl_glfw.h"
 
@@ -76,7 +75,7 @@ namespace JEngine
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
-		io.DisplaySize = ImVec2(app.GetWindow().GetWindowWidth(), app.GetWindow().GetWindowHeight());
+		io.DisplaySize = ImVec2((float)app.GetWindow().GetWindowWidth(), (float)app.GetWindow().GetWindowHeight());
 	
 		// RENDERING
 		ImGui::Render();

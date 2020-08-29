@@ -4,11 +4,15 @@
 
 // DLL EXPORT/IMPORT ON DIFFERENT PLATFORMS
 #ifdef JE_PLATFORM_WINDOWS
-	#ifdef JE_BUILD_DLL
-		#define JE_API __declspec(dllexport)
+	#if JE_DYNAMIC_LINK
+		#ifdef JE_BUILD_DLL
+			#define JE_API __declspec(dllexport)
+		#else
+			#define JE_API __declspec(dllimport)
+		#endif
 	#else
-		#define JE_API __declspec(dllimport)
-	#endif
+		#define JE_API
+	#endif // JE_DYNAMIC_LINK
 #else
 	#error JENGINE only support Windows 64-bit for now
 #endif

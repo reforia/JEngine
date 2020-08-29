@@ -56,7 +56,7 @@ namespace JEngine {
 		//JE_TRACE(e);
 		while (m_Running) {
 			// Clear Buffer
-			glClearColor(0.3, 0.3, 0.3, 1);
+			glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			// Update Objects Based on layer order

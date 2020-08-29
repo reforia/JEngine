@@ -24,9 +24,10 @@ include "JEngine/ThirdParty/imgui"
 
 project "JEngine"
     location "JEngine"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
-    staticruntime "off"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
@@ -40,6 +41,11 @@ project "JEngine"
         "%{prj.name}/src/**.cpp",
         "%{prj.name}/ThirdParty/glm/glm/**.hpp",
         "%{prj.name}/ThirdParty/glm/glm/**.inl",
+    }
+
+    defines
+    {
+        "_CRT_SECURE_NO_WARNINGS"
     }
 
     includedirs
@@ -61,7 +67,6 @@ project "JEngine"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
         systemversion "latest"
 
         defines
@@ -71,31 +76,27 @@ project "JEngine"
             "GLFW_INCLUDE_NONE"
         }
 
-        postbuildcommands
-        {
-            ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-        }
-
     filter "configurations:Debug"
         defines "JE_DEBUG"
         runtime "Debug"
-        symbols "On"
+        symbols "on"
 
     filter "configurations:Release"
         defines "JE_RELEASE"
         runtime "Release"
-        optimize "On"
+        optimize "on"
 
     filter "configurations:Distribution"
         defines "JE_DISTRIBUTION"
         runtime "Release"
-        optimize "On"
+        optimize "on"
         
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
-    staticruntime "off"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("intermediate/" .. outputdir .. "/%{prj.name}")
@@ -120,7 +121,6 @@ project "Sandbox"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
         systemversion "latest"
 
         defines
@@ -131,14 +131,14 @@ project "Sandbox"
     filter "configurations:Debug"
         defines "JE_DEBUG"
         runtime "Debug"
-        symbols "On"
+        symbols "on"
 
     filter "configurations:Release"
         defines "JE_RELEASE"
         runtime "Release"
-        optimize "On"
+        optimize "on"
 
     filter "configurations:Distribution"
         defines "JE_DISTRIBUTION"
         runtime "Release"
-        optimize "On"
+        optimize "on"

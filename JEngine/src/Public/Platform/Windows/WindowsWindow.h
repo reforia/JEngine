@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Window.h"
+
+#include "Renderer/RenderingContext.h"
 #include "GLFW/glfw3.h"
 
 namespace JEngine
@@ -27,6 +29,7 @@ namespace JEngine
 		virtual void ShutDown();
 	private:
 		GLFWwindow* m_Window;
+		RenderingContext* m_RenderContext;
 
 		struct WindowData
 		{

@@ -1335,6 +1335,8 @@
     <ClInclude Include="src\Public\Window.h">
       <Filter>src\Public</Filter>
     </ClInclude>
+    <ClInclude Include="src\Public\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Public\Renderer\RenderingContext.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Private\Application.cpp">
@@ -1364,5 +1366,6 @@
     <ClCompile Include="src\Private\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Private\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Private\Platform\OpenGL\OpenGLContext.cpp" />
   </ItemGroup>
 </Project>
