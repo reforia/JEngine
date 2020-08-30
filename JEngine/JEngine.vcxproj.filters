@@ -1337,6 +1337,13 @@
     </ClInclude>
     <ClInclude Include="src\Public\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Public\Renderer\RenderingContext.h" />
+    <ClInclude Include="src\Public\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Private\Renderer\Buffer.cpp" />
+    <ClInclude Include="src\Public\Renderer\Renderer.h" />
+    <ClInclude Include="src\Public\Renderer\Buffer.h" />
+    <ClInclude Include="src\Public\Renderer\Shader.h">
+      <Filter>src\Private</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Private\Application.cpp">
@@ -1367,5 +1374,9 @@
       <Filter>src\Private\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Private\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Private\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Private\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Private\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Private\Renderer\Buffer.cpp" />
   </ItemGroup>
 </Project>

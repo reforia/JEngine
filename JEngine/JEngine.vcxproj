@@ -140,7 +140,12 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Private\Renderer\Buffer.cpp" />
+    <ClInclude Include="src\Public\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Public\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Public\Renderer\Buffer.h" />
+    <ClInclude Include="src\Public\Renderer\Renderer.h" />
+    <ClInclude Include="src\Public\Renderer\Shader.h" />
     <ClInclude Include="src\Public\Renderer\RenderingContext.h" />
     <ClInclude Include="ThirdParty\glm\glm\common.hpp" />
     <ClInclude Include="ThirdParty\glm\glm\detail\_features.hpp" />
@@ -581,8 +586,12 @@
     <ClCompile Include="src\Private\Layer\LayerStack.cpp" />
     <ClCompile Include="src\Private\Log.cpp" />
     <ClCompile Include="src\Private\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Private\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Private\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Private\Platform\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="src\Private\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Private\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Private\Renderer\Buffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="ThirdParty\Glad\Glad.vcxproj">

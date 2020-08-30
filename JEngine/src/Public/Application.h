@@ -8,6 +8,9 @@
 #include "Layer/LayerStack.h"
 #include "Layer/ImguiLayer.h"
 
+#include "Renderer/Shader.h"
+#include "Renderer/Buffer.h"
+
 namespace JEngine {
 	class JE_API Application 
 	{
@@ -24,6 +27,7 @@ namespace JEngine {
 
 		inline static Application& Get() { return *s_Instance; };
 		inline Window& GetWindow() { return *m_Window; };
+
 	private:
 		bool OnWindowCloseEvent(WindowCloseEvent& e);
 
@@ -33,8 +37,15 @@ namespace JEngine {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
+		unsigned int m_VertexArray;
+
 		static Application* s_Instance;
+
+		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 	};
 
 	Application* CreateApplication();
+
 }
