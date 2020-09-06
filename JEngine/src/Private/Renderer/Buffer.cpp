@@ -9,12 +9,12 @@ namespace JEngine
 {
 	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
 	{
-		switch (Renderer::GetAPI())
+		switch (Renderer::GetRenderPlatform())
 		{
-		case RendererAPI::None:
+		case RendererAPI::RenderPlatform::None:
 			JE_CORE_ASSERT(false, "Renderer API is not Supported");
 			return nullptr;
-		case RendererAPI::OpenGL:
+		case RendererAPI::RenderPlatform::OpenGL:
 			return new OpenGLVertexBuffer(vertices, size);
 		}
 
@@ -24,12 +24,12 @@ namespace JEngine
 
 	IndexBuffer* IndexBuffer::Create(uint32_t* vertices, uint32_t count)
 	{
-		switch (Renderer::GetAPI())
+		switch (Renderer::GetRenderPlatform())
 		{
-		case RendererAPI::None:
+		case RendererAPI::RenderPlatform::None:
 			JE_CORE_ASSERT(false, "Renderer API is not Supported");
 			return nullptr;
-		case RendererAPI::OpenGL:
+		case RendererAPI::RenderPlatform::OpenGL:
 			return new OpenGLIndexBuffer(vertices, count);
 		}
 

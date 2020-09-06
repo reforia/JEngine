@@ -1,35 +1,15 @@
 #include "JE_PCH.h"
 #include "Application.h"
 #include "Events/Event.h"
-#include "glad/glad.h"
+#include "Renderer/Renderer.h"
 #include "Input.h"
 #include "Layer/ImguiLayer.h"
+#include "Renderer/Buffer.h"
+
 
 namespace JEngine {
 
 	Application* Application::s_Instance = nullptr;
-
-	// SUPER TEMP
-	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType Type)
-	{
-		switch (Type)
-		{
-			case ShaderDataType::Float:		return GL_FLOAT;
-			case ShaderDataType::Float2:	return GL_FLOAT;
-			case ShaderDataType::Float3:	return GL_FLOAT;
-			case ShaderDataType::Float4:	return GL_FLOAT;
-			case ShaderDataType::Mat3:		return GL_FLOAT;
-			case ShaderDataType::Mat4:		return GL_FLOAT;
-			case ShaderDataType::Int:		return GL_INT;
-			case ShaderDataType::Int2:		return GL_INT;
-			case ShaderDataType::Int3:		return GL_INT;
-			case ShaderDataType::Int4:		return GL_INT;
-			case ShaderDataType::Bool:		return GL_BOOL;
-		}
-
-		JE_CORE_ASSERT(false, "Unknown Shader Data Type!");
-		return 0;
-	}
 
 	Application::Application() {
 		JE_CORE_ASSERT(!s_Instance, "Application already exists!");
@@ -42,41 +22,30 @@ namespace JEngine {
 		m_ImguiLayer = new ImguiLayer();
 		PushOverlay(m_ImguiLayer);
 
+		m_VertexArray.reset(VertexArray::Create());
+
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.5f, 0.4f, 0.1f, 1.0f,
 			0.5, -0.5f, 0.0f, 0.1f, 0.4f, 0.5f, 1.0f,
 			0.0f, 0.5f, 0.0f, 0.2f, 0.1f, 0.4f, 1.0f
 		};
 
-		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+		std::shared_ptr<VertexBuffer> vertexBuffer;
+		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
-		{
-			BufferLayout layout = {
-				{ShaderDataType::Float3, "a_Position"},
-				{ShaderDataType::Float4, "a_Color"}
-			};
+		BufferLayout layout = {
+			{ShaderDataType::Float3, "a_Position"},
+			{ShaderDataType::Float4, "a_Color"}
+		};
 
-			m_VertexBuffer->SetLayout(layout);
-		}
+		vertexBuffer->SetLayout(layout);
 
-		uint32_t index = 0;
-		const auto& layout = m_VertexBuffer->GetLayout();
-		for (const auto& element : layout)
-		{
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(
-				index, 
-				element.GetComponentCount(), 
-				ShaderDataTypeToOpenGLBaseType(element.Type), 
-				element.Normalized ? GL_TRUE: GL_FALSE, 
-				layout.GetStride(), 
-				(const void*)element.Offset
-			);
-			index++;
-		}
+		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		std::shared_ptr<IndexBuffer> indexBuffer;
+		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 		std::string vertexSrc = R"(
 			#version 330 core
@@ -148,12 +117,15 @@ namespace JEngine {
 		//JE_TRACE(e);
 		while (m_Running) {
 			// Clear Buffer
-			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({ 0.1, 0.1, 0.1, 1.0 });
+			RenderCommand::Clear();
+
+			Renderer::BeginScene();
 
 			m_Shader->Bind();
-			glBindVertexArray(m_VertexArray);
-			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(m_VertexArray);
+
+			Renderer::EndScene();
 
 			// Update Objects Based on layer order
 			for (Layer* layer : m_LayerStack)
