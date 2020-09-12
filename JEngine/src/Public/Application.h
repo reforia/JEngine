@@ -11,6 +11,9 @@
 #include "Renderer/Shader.h"
 #include "Renderer/VertexArray.h"
 
+#include "Camera/OrthographicCamera.h"
+
+
 namespace JEngine {
 	class JE_API Application 
 	{
@@ -36,10 +39,11 @@ namespace JEngine {
 		ImguiLayer* m_ImguiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+		OrthographicCamera m_Camera;
 
 		static Application* s_Instance;
 
-		std::unique_ptr<Shader> m_Shader;
+		std::shared_ptr<Shader> m_Shader;
 		std::shared_ptr<VertexArray> m_VertexArray;
 	};
 

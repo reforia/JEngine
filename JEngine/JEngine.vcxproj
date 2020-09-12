@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Public\Camera\OrthographicCamera.h" />
     <ClInclude Include="src\Public\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Public\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Public\Renderer\RenderCommand.h" />
@@ -581,6 +582,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Private\Application.cpp" />
+    <ClCompile Include="src\Private\Camera\OrthographicCamera.cpp" />
     <ClCompile Include="src\Private\ImguiBuild.cpp" />
     <ClCompile Include="src\Private\JE_PCH.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
