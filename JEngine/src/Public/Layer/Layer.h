@@ -3,6 +3,8 @@
 #include "Core.h"
 #include "Events/Event.h"
 
+#include "Core/Timestep.h"
+
 namespace JEngine
 {
 	class JE_API Layer
@@ -13,7 +15,7 @@ namespace JEngine
 
 		virtual void OnAttach() {};
 		virtual void OnDetach() {};
-		virtual void OnUpdate() {};
+		virtual void OnUpdate(const Timestep& DeltaTime) {};
 		virtual void OnEvent(Event& e) {};
 		virtual void OnImguiRender() {};
 

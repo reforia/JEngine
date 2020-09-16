@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Public\Camera\OrthographicCamera.h" />
+    <ClInclude Include="src\Public\Core\Timestep.h" />
     <ClInclude Include="src\Public\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Public\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Public\Renderer\RenderCommand.h" />

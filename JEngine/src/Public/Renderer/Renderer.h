@@ -2,8 +2,8 @@
 
 #include "RenderCommand.h"
 
-#include "Camera/OrthographicCamera.h"
-#include "Renderer/Shader.h"
+#include "../Camera/OrthographicCamera.h"
+#include "Shader.h"
 
 namespace JEngine
 {

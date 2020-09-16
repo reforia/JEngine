@@ -39,12 +39,10 @@ namespace JEngine {
 		ImguiLayer* m_ImguiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-		OrthographicCamera m_Camera;
+		
+		float m_LastFrameTime = 0.0f;
 
 		static Application* s_Instance;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
 	};
 
 	Application* CreateApplication();
