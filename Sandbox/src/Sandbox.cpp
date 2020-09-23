@@ -2,7 +2,10 @@
 
 #include "imgui/imgui.h"
 
+#include "../../src/Public/Platform/OpenGL/OpenGLShader.h"
+
 #include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
 
 class ExampleLayer : public JEngine::Layer
 {
@@ -61,15 +64,15 @@ public:
 			layout(location = 0) out vec4 color;
 
 			in vec3 v_Position;
-			in vec4 v_Color;
+			uniform vec3 u_Color;
 
 			void main()
 			{
-				color = v_Color;
+				color = vec4(u_Color, 1.0f);
 			}
 		)";
 
-		m_Shader.reset(new JEngine::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(JEngine::Shader::Create(vertexSrc, fragmentSrc));
 	}
 
 	void OnUpdate(const JEngine::Timestep& DeltaTime) override 
@@ -103,6 +106,9 @@ public:
 
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+		std::dynamic_pointer_cast<JEngine::OpenGLShader>(m_Shader)->Bind();
+		std::dynamic_pointer_cast<JEngine::OpenGLShader>(m_Shader)->UploadUniformFloat3("u_Color", m_ShaderColor);
+
 		for (int y = 0; y < 20; y++)
 		{
 			for (int x = 0; x < 20; x++)
@@ -114,6 +120,13 @@ public:
 		}
 
 		JEngine::Renderer::EndScene();
+	}
+
+	virtual void OnImguiRender() override
+	{
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Shader Color", glm::value_ptr(m_ShaderColor));
+		ImGui::End();
 	}
 
 	void OnEvent(JEngine::Event& e) override
@@ -132,6 +145,8 @@ private:
 
 	std::shared_ptr<JEngine::Shader> m_Shader;
 	std::shared_ptr<JEngine::VertexArray> m_VertexArray;
+
+	glm::vec3 m_ShaderColor = { 0.2f, 0.3, 0.1f };
 };
 
 class Sandbox : public JEngine::Application {
