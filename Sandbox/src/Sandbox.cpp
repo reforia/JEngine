@@ -7,6 +7,8 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
+#include "../../src/Public/Renderer/Texture.h"
+
 class ExampleLayer : public JEngine::Layer
 {
 public:
@@ -21,7 +23,7 @@ public:
 			0.0f, 0.5f, 0.0f, 0.2f, 0.1f, 0.4f, 1.0f
 		};
 
-		std::shared_ptr<JEngine::VertexBuffer> vertexBuffer;
+		JEngine::Ref<JEngine::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(JEngine::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		JEngine::BufferLayout layout = {
@@ -34,7 +36,7 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<JEngine::IndexBuffer> indexBuffer;
+		JEngine::Ref<JEngine::IndexBuffer> indexBuffer;
 		indexBuffer.reset(JEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -54,7 +56,7 @@ public:
 			{
 				v_Position = a_Position;
 				v_Color = a_Color;
-				gl_Position = u_ViewProjection * u_Transform * vec4(v_Position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -73,6 +75,72 @@ public:
 		)";
 
 		m_Shader.reset(JEngine::Shader::Create(vertexSrc, fragmentSrc));
+
+		//-----------------SQUARE PLANE--------------------
+		m_SquareVertexArray.reset(JEngine::VertexArray::Create());
+
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			0.5, -0.5f, 0.0f, 1.0f, 0.0f,
+			0.5f, 0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5, 0.5f, 0.0f, 0.0f, 1.0f
+		};
+
+		JEngine::Ref<JEngine::VertexBuffer> squareVertexBuffer;
+		squareVertexBuffer.reset(JEngine::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+
+		JEngine::BufferLayout squareLayout = {
+			{JEngine::ShaderDataType::Float3, "a_Position"},
+			{JEngine::ShaderDataType::Float2, "a_TexCoord"}
+		};
+		
+		squareVertexBuffer->SetLayout(squareLayout);
+
+		m_SquareVertexArray->AddVertexBuffer(squareVertexBuffer);
+
+		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+		JEngine::Ref<JEngine::IndexBuffer> squareIndexBuffer;
+		squareIndexBuffer.reset(JEngine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		m_SquareVertexArray->SetIndexBuffer(squareIndexBuffer);
+
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+			
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
+			}
+		)";
+
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_TextureShader.reset(JEngine::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+
+		m_Texture = JEngine::Texture2D::Create("assets/textures/jengine_logo.png");
+
+		std::dynamic_pointer_cast<JEngine::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<JEngine::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(const JEngine::Timestep& DeltaTime) override 
@@ -119,6 +187,9 @@ public:
 			}
 		}
 
+		m_Texture->Bind();
+		JEngine::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
 		JEngine::Renderer::EndScene();
 	}
 
@@ -143,10 +214,13 @@ private:
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotateSpeed = 0.2f;
 
-	std::shared_ptr<JEngine::Shader> m_Shader;
-	std::shared_ptr<JEngine::VertexArray> m_VertexArray;
+	JEngine::Ref<JEngine::Shader> m_Shader, m_TextureShader;
 
-	glm::vec3 m_ShaderColor = { 0.2f, 0.3, 0.1f };
+	JEngine::Ref<JEngine::VertexArray> m_VertexArray;
+	JEngine::Ref<JEngine::VertexArray> m_SquareVertexArray;
+
+	JEngine::Ref<JEngine::Texture> m_Texture;
+	glm::vec3 m_ShaderColor = { 0.4f, 0.4f, 0.8f };
 };
 
 class Sandbox : public JEngine::Application {

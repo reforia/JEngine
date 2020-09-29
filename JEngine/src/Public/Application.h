@@ -35,7 +35,7 @@ namespace JEngine {
 		bool OnWindowCloseEvent(WindowCloseEvent& e);
 
 	private:
-		std::unique_ptr<Window> m_Window;
+		Scope<Window> m_Window;
 		ImguiLayer* m_ImguiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;

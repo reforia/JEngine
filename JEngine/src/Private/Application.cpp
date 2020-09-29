@@ -20,7 +20,7 @@ namespace JEngine {
 		s_Instance = this;
 
 		// Create default JEngine Editor Window
-		m_Window = std::unique_ptr<Window>(Window::CreateJEWindow());
+		m_Window = Scope<Window>(Window::CreateJEWindow());
 		m_Window->SetEventCallback(EVENT_BIND_FUNCTION(Application::OnEvent));
 
 		m_ImguiLayer = new ImguiLayer();

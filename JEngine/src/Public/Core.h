@@ -2,6 +2,8 @@
 // CORE MACROS USED ALLOVER THE ENGINE
 #pragma once
 
+#include <memory>
+
 // DLL EXPORT/IMPORT ON DIFFERENT PLATFORMS
 #ifdef JE_PLATFORM_WINDOWS
 	#if JE_DYNAMIC_LINK
@@ -34,3 +36,13 @@
 
 // BIT OPERATOR
 #define BIT(x) (1 << x)
+
+namespace JEngine{
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+
+}

@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "JEngine/ThirdParty/GLFW/include"
 IncludeDir["Glad"] = "JEngine/ThirdParty/Glad/include"
 IncludeDir["Imgui"] = "JEngine/ThirdParty/imgui"
 IncludeDir["glm"] = "JEngine/ThirdParty/glm"
+IncludeDir["stb_image"] = "JEngine/ThirdParty/StbImage"
 
 include "JEngine/ThirdParty/GLFW"
 include "JEngine/ThirdParty/Glad"
@@ -39,6 +40,8 @@ project "JEngine"
     {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp",
+        "%{prj.name}/ThirdParty/StbImage/**.cpp",
+        "%{prj.name}/ThirdParty/StbImage/**.h",
         "%{prj.name}/ThirdParty/glm/glm/**.hpp",
         "%{prj.name}/ThirdParty/glm/glm/**.inl",
     }
@@ -55,7 +58,8 @@ project "JEngine"
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.Imgui}",
-        "%{IncludeDir.glm}"
+        "%{IncludeDir.glm}",
+        "%{IncludeDir.stb_image}"
     }
 
     links
