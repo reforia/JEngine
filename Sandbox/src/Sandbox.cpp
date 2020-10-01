@@ -138,6 +138,7 @@ public:
 		m_TextureShader.reset(JEngine::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 
 		m_Texture = JEngine::Texture2D::Create("assets/textures/jengine_logo.png");
+		m_TransparentEngineTexture = JEngine::Texture2D::Create("assets/textures/Engine_logo.png");
 
 		std::dynamic_pointer_cast<JEngine::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<JEngine::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -190,6 +191,9 @@ public:
 		m_Texture->Bind();
 		JEngine::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
+		m_TransparentEngineTexture->Bind();
+		JEngine::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
 		JEngine::Renderer::EndScene();
 	}
 
@@ -219,7 +223,7 @@ private:
 	JEngine::Ref<JEngine::VertexArray> m_VertexArray;
 	JEngine::Ref<JEngine::VertexArray> m_SquareVertexArray;
 
-	JEngine::Ref<JEngine::Texture> m_Texture;
+	JEngine::Ref<JEngine::Texture> m_Texture, m_TransparentEngineTexture;
 	glm::vec3 m_ShaderColor = { 0.4f, 0.4f, 0.8f };
 };
 

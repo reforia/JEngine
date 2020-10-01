@@ -23,6 +23,8 @@ namespace JEngine {
 		m_Window = Scope<Window>(Window::CreateJEWindow());
 		m_Window->SetEventCallback(EVENT_BIND_FUNCTION(Application::OnEvent));
 
+		Renderer::Init();
+
 		m_ImguiLayer = new ImguiLayer();
 		PushOverlay(m_ImguiLayer);
 	}
