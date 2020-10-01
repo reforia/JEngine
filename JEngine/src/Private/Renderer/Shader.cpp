@@ -7,12 +7,12 @@
 namespace JEngine
 {
 
-	Shader* Shader::Create(const std::string& vertexSrc, const std::string& fragmentSrc)
+	Ref<Shader> Shader::Create(const std::string& vertexSrc, const std::string& fragmentSrc)
 	{
 		switch (Renderer::GetRenderPlatform())
 		{
 		case RendererAPI::RenderPlatform::None: JE_CORE_ASSERT(false, "RendererAPI::None is not suppported!"); return nullptr;
-		case RendererAPI::RenderPlatform::OpenGL: return new OpenGLShader(vertexSrc, fragmentSrc);
+		case RendererAPI::RenderPlatform::OpenGL: return std::make_shared<OpenGLShader>(vertexSrc, fragmentSrc);
 		}
 
 		JE_CORE_ASSERT(false, "Unknow RendererAPI!");

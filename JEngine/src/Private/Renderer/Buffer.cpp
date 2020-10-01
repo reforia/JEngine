@@ -7,7 +7,7 @@
 
 namespace JEngine
 {
-	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
+	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
 	{
 		switch (Renderer::GetRenderPlatform())
 		{
@@ -15,14 +15,14 @@ namespace JEngine
 			JE_CORE_ASSERT(false, "Renderer API is not Supported");
 			return nullptr;
 		case RendererAPI::RenderPlatform::OpenGL:
-			return new OpenGLVertexBuffer(vertices, size);
+			return std::make_shared<OpenGLVertexBuffer>(vertices, size);
 		}
 
 		JE_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
 	}
 
-	IndexBuffer* IndexBuffer::Create(uint32_t* vertices, uint32_t count)
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* vertices, uint32_t count)
 	{
 		switch (Renderer::GetRenderPlatform())
 		{
@@ -30,7 +30,7 @@ namespace JEngine
 			JE_CORE_ASSERT(false, "Renderer API is not Supported");
 			return nullptr;
 		case RendererAPI::RenderPlatform::OpenGL:
-			return new OpenGLIndexBuffer(vertices, count);
+			return std::make_shared<OpenGLIndexBuffer>(vertices, count);
 		}
 
 		JE_CORE_ASSERT(false, "Unknown RendererAPI!");

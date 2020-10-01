@@ -15,7 +15,7 @@ public:
 	ExampleLayer()
 		:Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
-		m_VertexArray.reset(JEngine::VertexArray::Create());
+		m_VertexArray = JEngine::VertexArray::Create();
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.5f, 0.4f, 0.1f, 1.0f,
@@ -24,7 +24,7 @@ public:
 		};
 
 		JEngine::Ref<JEngine::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(JEngine::VertexBuffer::Create(vertices, sizeof(vertices)));
+		vertexBuffer = JEngine::VertexBuffer::Create(vertices, sizeof(vertices));
 
 		JEngine::BufferLayout layout = {
 			{JEngine::ShaderDataType::Float3, "a_Position"},
@@ -37,7 +37,7 @@ public:
 
 		uint32_t indices[3] = { 0, 1, 2 };
 		JEngine::Ref<JEngine::IndexBuffer> indexBuffer;
-		indexBuffer.reset(JEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		indexBuffer = JEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 		std::string vertexSrc = R"(
@@ -74,10 +74,10 @@ public:
 			}
 		)";
 
-		m_Shader.reset(JEngine::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = JEngine::Shader::Create(vertexSrc, fragmentSrc);
 
 		//-----------------SQUARE PLANE--------------------
-		m_SquareVertexArray.reset(JEngine::VertexArray::Create());
+		m_SquareVertexArray = JEngine::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -87,7 +87,7 @@ public:
 		};
 
 		JEngine::Ref<JEngine::VertexBuffer> squareVertexBuffer;
-		squareVertexBuffer.reset(JEngine::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVertexBuffer = JEngine::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 
 		JEngine::BufferLayout squareLayout = {
 			{JEngine::ShaderDataType::Float3, "a_Position"},
@@ -100,7 +100,7 @@ public:
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 		JEngine::Ref<JEngine::IndexBuffer> squareIndexBuffer;
-		squareIndexBuffer.reset(JEngine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		squareIndexBuffer = JEngine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		m_SquareVertexArray->SetIndexBuffer(squareIndexBuffer);
 
 		std::string textureShaderVertexSrc = R"(
@@ -135,7 +135,7 @@ public:
 			}
 		)";
 
-		m_TextureShader.reset(JEngine::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+		m_TextureShader = JEngine::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc);
 
 		m_Texture = JEngine::Texture2D::Create("assets/textures/jengine_logo.png");
 		m_TransparentEngineTexture = JEngine::Texture2D::Create("assets/textures/Engine_logo.png");

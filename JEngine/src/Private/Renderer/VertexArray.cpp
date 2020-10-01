@@ -7,12 +7,12 @@
 namespace JEngine
 {
 	
-	VertexArray* VertexArray::Create()
+	Ref<VertexArray> VertexArray::Create()
 	{
 		switch (Renderer::GetRenderPlatform())
 		{
 			case RendererAPI::RenderPlatform::None: JE_CORE_ASSERT(false, "RendererAPI::None is not suppported!"); return nullptr;
-			case RendererAPI::RenderPlatform::OpenGL: return new OpenGLVertexArray();
+			case RendererAPI::RenderPlatform::OpenGL: return std::make_shared<OpenGLVertexArray>();
 		}
 
 		JE_CORE_ASSERT(false, "Unknow RendererAPI!");
