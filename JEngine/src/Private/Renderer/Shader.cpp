@@ -6,6 +6,17 @@
 
 namespace JEngine
 {
+	Ref<Shader> Shader::Create(const std::string& filepath)
+	{
+		switch (Renderer::GetRenderPlatform())
+		{
+		case RendererAPI::RenderPlatform::None: JE_CORE_ASSERT(false, "RendererAPI::None is not suppported!"); return nullptr;
+		case RendererAPI::RenderPlatform::OpenGL: return std::make_shared<OpenGLShader>(filepath);
+		}
+
+		JE_CORE_ASSERT(false, "Unknow RendererAPI!");
+		return nullptr;
+	}
 
 	Ref<Shader> Shader::Create(const std::string& vertexSrc, const std::string& fragmentSrc)
 	{

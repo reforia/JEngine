@@ -15,6 +15,7 @@ public:
 	ExampleLayer()
 		:Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
+		//-----------------DRAW TRIANGLE--------------------
 		m_VertexArray = JEngine::VertexArray::Create();
 
 		float vertices[3 * 7] = {
@@ -40,43 +41,10 @@ public:
 		indexBuffer = JEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
-		std::string vertexSrc = R"(
-			#version 330 core
+		// FlatColor Shader
+		m_Shader = JEngine::Shader::Create("assets/shaders/FlatColor.glsl");
 
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
-			
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec3 v_Position;	
-			out vec4 v_Color;
-
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string fragmentSrc = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 color;
-
-			in vec3 v_Position;
-			uniform vec3 u_Color;
-
-			void main()
-			{
-				color = vec4(u_Color, 1.0f);
-			}
-		)";
-
-		m_Shader = JEngine::Shader::Create(vertexSrc, fragmentSrc);
-
-		//-----------------SQUARE PLANE--------------------
+		//-----------------DRAW SQUARE PLANE--------------------
 		m_SquareVertexArray = JEngine::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
@@ -103,39 +71,8 @@ public:
 		squareIndexBuffer = JEngine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		m_SquareVertexArray->SetIndexBuffer(squareIndexBuffer);
 
-		std::string textureShaderVertexSrc = R"(
-			#version 330 core
-
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec2 a_TexCoord;
-			
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec2 v_TexCoord;
-
-			void main()
-			{
-				v_TexCoord = a_TexCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string textureShaderFragmentSrc = R"(
-			#version 330 core
-
-			layout(location = 0) out vec4 color;
-
-			in vec2 v_TexCoord;
-			uniform sampler2D u_Texture;
-
-			void main()
-			{
-				color = texture(u_Texture, v_TexCoord);
-			}
-		)";
-
-		m_TextureShader = JEngine::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc);
+		// Texture Shader
+		m_TextureShader = JEngine::Shader::Create("assets/shaders/Texture.glsl");
 
 		m_Texture = JEngine::Texture2D::Create("assets/textures/jengine_logo.png");
 		m_TransparentEngineTexture = JEngine::Texture2D::Create("assets/textures/Engine_logo.png");
