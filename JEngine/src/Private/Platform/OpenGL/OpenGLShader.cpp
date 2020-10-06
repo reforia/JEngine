@@ -19,7 +19,7 @@ namespace JEngine
 		return 0;
 	}
 
-	OpenGLShader::OpenGLShader(const std::string filepath)
+	OpenGLShader::OpenGLShader(const std::string& filepath)
 	{
 		std::string source = ReadFile(filepath);
 		auto shaderSources = PreProcess(source);
@@ -35,7 +35,7 @@ namespace JEngine
 
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& name, onst std::string vertexSrc, const std::string fragmentSrc)
+	OpenGLShader::OpenGLShader(const std::string& name, const std::string vertexSrc, const std::string fragmentSrc)
 		:m_Name(name)
 	{
 		std::unordered_map<GLenum, std::string> sources;
@@ -99,8 +99,7 @@ namespace JEngine
 		// glCreateProgram() gets a program object
 		GLenum program = glCreateProgram();
 		JE_CORE_ASSERT(shaderSources.size() <= 2, "JEngine only Support 256 shaders for now");
-		int maxShaderCounts = 256;
-		std::array<GLenum, maxShaderCounts> glShaderIDs;
+		std::array<GLenum, 256> glShaderIDs;
 		//memset(glShaderIDs, -1, sizeof(GLenum) * maxShaderCounts)
 		//This won't work sinc GLenum is an uint
 
@@ -182,8 +181,9 @@ namespace JEngine
 			// We maybe can do something to save some loops
 			glDetachShader(program, id);
 
-		// Now time to assign the program to m_RendererID
-		m_RendererID = program;
+			// Now time to assign the program to m_RendererID
+			m_RendererID = program;
+		}
 	}
 
 	void OpenGLShader::Bind() const

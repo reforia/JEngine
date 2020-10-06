@@ -11,7 +11,7 @@ namespace JEngine
 	class OpenGLShader: public Shader
 	{
 	public:
-		OpenGLShader(const std::string filepath);
+		OpenGLShader(const std::string& filepath);
 		OpenGLShader(const std::string& name, const std::string vertexSrc, const std::string fragmentSrc);
 		virtual ~OpenGLShader();
 
@@ -37,6 +37,6 @@ namespace JEngine
 
 	private:
 		uint32_t m_RendererID;
-		std::string& m_Name;
+		std::string m_Name;
 	};
 }

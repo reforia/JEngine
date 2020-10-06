@@ -32,13 +32,17 @@ namespace JEngine
 
 	void ShaderLibrary::Add(const Ref<Shader>& shader)
 	{
-		auto& name = shader.GetName();
+		auto& name = shader->GetName();
 		Add(name, shader);
 	}
 
 	void ShaderLibrary::Add(const std::string& name, const Ref<Shader>& shader)
 	{
-		JE_CORE_ASSERT(!Exists(name), "Shader already exists!");
+		if (Exists(name))
+		{
+			JE_CORE_WARN("Shader {0} already exists!", name);
+			return;
+		}
 		m_Shaders[name] = shader;
 	}
 
@@ -49,7 +53,7 @@ namespace JEngine
 		return shader;
 	}
 
-	Ref<Shader> ShaderLibrary::Load(const string& name, const std::string& filepath)
+	Ref<Shader> ShaderLibrary::Load(const std::string& name, const std::string& filepath)
 	{
 		auto shader = Shader::Create(filepath);
 		Add(name, shader);

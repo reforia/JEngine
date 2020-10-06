@@ -41,9 +41,6 @@ public:
 		indexBuffer = JEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
-		// FlatColor Shader
-		m_Shader = JEngine::Shader::Create("assets/shaders/FlatColor.glsl");
-
 		//-----------------DRAW SQUARE PLANE--------------------
 		m_SquareVertexArray = JEngine::VertexArray::Create();
 
@@ -72,7 +69,7 @@ public:
 		m_SquareVertexArray->SetIndexBuffer(squareIndexBuffer);
 
 		// Texture Shader
-		auto textureShader = JEngine::ShaderLibrary::Load("assets/shaders/Texture.glsl");
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = JEngine::Texture2D::Create("assets/textures/jengine_logo.png");
 		m_TransparentEngineTexture = JEngine::Texture2D::Create("assets/textures/Engine_logo.png");
@@ -112,10 +109,10 @@ public:
 
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		auto flatShader = JEngine::ShaderLibrary::Load("assets/shaders/FlatShader.glsl");
+		auto flatColorShader = m_ShaderLibrary.Load("assets/shaders/FlatColor.glsl");
 
-		std::dynamic_pointer_cast<JEngine::OpenGLShader>(flatShader)->Bind();
-		std::dynamic_pointer_cast<JEngine::OpenGLShader>(flatShader)->UploadUniformFloat3("u_Color", m_ShaderColor);
+		std::dynamic_pointer_cast<JEngine::OpenGLShader>(flatColorShader)->Bind();
+		std::dynamic_pointer_cast<JEngine::OpenGLShader>(flatColorShader)->UploadUniformFloat3("u_Color", m_ShaderColor);
 
 		for (int y = 0; y < 20; y++)
 		{
@@ -123,7 +120,7 @@ public:
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 trans = glm::translate(glm::mat4(1.0f), pos) * scale;
-				JEngine::Renderer::Submit(flatShader, m_VertexArray, trans);
+				JEngine::Renderer::Submit(flatColorShader, m_VertexArray, trans);
 			}
 		}
 
