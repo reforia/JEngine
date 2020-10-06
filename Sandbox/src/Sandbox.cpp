@@ -72,13 +72,13 @@ public:
 		m_SquareVertexArray->SetIndexBuffer(squareIndexBuffer);
 
 		// Texture Shader
-		m_TextureShader = JEngine::Shader::Create("assets/shaders/Texture.glsl");
+		auto textureShader = JEngine::ShaderLibrary::Load("assets/shaders/Texture.glsl");
 
 		m_Texture = JEngine::Texture2D::Create("assets/textures/jengine_logo.png");
 		m_TransparentEngineTexture = JEngine::Texture2D::Create("assets/textures/Engine_logo.png");
 
-		std::dynamic_pointer_cast<JEngine::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<JEngine::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<JEngine::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<JEngine::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(const JEngine::Timestep& DeltaTime) override 
@@ -112,8 +112,10 @@ public:
 
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		std::dynamic_pointer_cast<JEngine::OpenGLShader>(m_Shader)->Bind();
-		std::dynamic_pointer_cast<JEngine::OpenGLShader>(m_Shader)->UploadUniformFloat3("u_Color", m_ShaderColor);
+		auto flatShader = JEngine::ShaderLibrary::Load("assets/shaders/FlatShader.glsl");
+
+		std::dynamic_pointer_cast<JEngine::OpenGLShader>(flatShader)->Bind();
+		std::dynamic_pointer_cast<JEngine::OpenGLShader>(flatShader)->UploadUniformFloat3("u_Color", m_ShaderColor);
 
 		for (int y = 0; y < 20; y++)
 		{
@@ -121,15 +123,17 @@ public:
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 trans = glm::translate(glm::mat4(1.0f), pos) * scale;
-				JEngine::Renderer::Submit(m_Shader, m_VertexArray, trans);
+				JEngine::Renderer::Submit(flatShader, m_VertexArray, trans);
 			}
 		}
 
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
 		m_Texture->Bind();
-		JEngine::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		JEngine::Renderer::Submit(textureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		m_TransparentEngineTexture->Bind();
-		JEngine::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		JEngine::Renderer::Submit(textureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		JEngine::Renderer::EndScene();
 	}
@@ -155,7 +159,7 @@ private:
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotateSpeed = 0.2f;
 
-	JEngine::Ref<JEngine::Shader> m_Shader, m_TextureShader;
+	JEngine::ShaderLibrary m_ShaderLibrary;
 
 	JEngine::Ref<JEngine::VertexArray> m_VertexArray;
 	JEngine::Ref<JEngine::VertexArray> m_SquareVertexArray;
