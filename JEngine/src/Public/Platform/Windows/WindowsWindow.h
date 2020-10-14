@@ -25,8 +25,9 @@ namespace JEngine
 		inline virtual void* GetNativeWindow() const override { return m_Window; };
 
 	private:
-		virtual void Init(const WindowProperty& windowProperty);
-		virtual void ShutDown();
+		virtual void Init(const WindowProperty& windowProperty) override;
+
+		virtual void ShutDown() override;
 	private:
 		GLFWwindow* m_Window;
 		RenderingContext* m_RenderContext;

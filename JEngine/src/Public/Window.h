@@ -37,6 +37,9 @@ namespace JEngine
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
 
+		virtual void Init(const WindowProperty& windowProperty) = 0;
+		virtual void ShutDown() = 0;
+
 		virtual void* GetNativeWindow() const = 0;
 
 		static Window* CreateJEWindow(const WindowProperty& property = WindowProperty());

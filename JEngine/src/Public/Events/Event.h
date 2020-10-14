@@ -32,6 +32,7 @@ namespace JEngine {
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override {return category;}
 	//Event Bind Macros
 #define EVENT_BIND_FUNCTION(function) std::bind(&function, this, std::placeholders::_1)
+//#define EVENT_BIND_FUNCTION(function) [&](auto& a){ this->function(a); }
 
 	class JE_API Event {
 	public:
