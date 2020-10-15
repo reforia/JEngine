@@ -31,8 +31,8 @@ namespace JEngine {
 								virtual const char* GetName() const override {return #type;}
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override {return category;}
 	//Event Bind Macros
-#define EVENT_BIND_FUNCTION(function) std::bind(&function, this, std::placeholders::_1)
-//#define EVENT_BIND_FUNCTION(function) [&](auto& a){ this->function(a); }
+//#define EVENT_BIND_FUNCTION(function) std::bind(&function, this, std::placeholders::_1)
+#define EVENT_BIND_FUNCTION(function) [&](auto& e){ return this->function(e); }
 
 	class JE_API Event {
 	public:
@@ -54,10 +54,10 @@ namespace JEngine {
 	// Class Event Dispatcher
 	class EventDispatcher 
 	{
-		// Define EventFunc() Template
-		// With T& input and return bool
-		template<typename T>
-		using EventFunc = std::function<bool(T&)>;
+		//// Define EventFunc() Template
+		//// With T& input and return bool
+		//template<typename T>
+		//using EventFunc = std::function<bool(T&)>;
 	public:
 		// Bind the event to this Dispatcher,
 		// Each Dispatcher can only Dispatch 1 Event
@@ -66,8 +66,8 @@ namespace JEngine {
 
 		// Make a template function to Dispatch the event
 		// The input parameter is a Function
-		template<typename T>
-		bool DispatchEvent(EventFunc<T> Func) {
+		template<typename T, typename F>
+		bool DispatchEvent(F&& Func) {
 			// Check if the Event Type of the Event bond to this dispatcher
 			// matches with the function we are using.
 			// Because if they are not the same type, then we cannot guarantee
