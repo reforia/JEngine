@@ -18,7 +18,7 @@ namespace JEngine
 	bool WindowsInput::IsMouseButtonDownImpl(int mouseButton)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		auto status = glfwGetKey(window, mouseButton);
+		auto status = glfwGetMouseButton(window, mouseButton);
 		return status == GLFW_PRESS;
 	}
 
