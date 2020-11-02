@@ -33,11 +33,13 @@ namespace JEngine {
 
 	private:
 		bool OnWindowCloseEvent(WindowCloseEvent& e);
+		bool OnWindowResizeEvent(WindowResizeEvent& e);
 
 	private:
 		Scope<Window> m_Window;
 		ImguiLayer* m_ImguiLayer;
 		bool m_Running = true;
+		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		
 		float m_LastFrameTime = 0.0f;

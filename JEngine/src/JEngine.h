@@ -5,6 +5,7 @@
 #include "Public/Application.h"
 #include "Public/Log.h"
 #include "Public/MouseButtonCode.h"
+#include "Public/Camera/OrthographicCameraController.h"
 #include "Public/KeyCodes.h"
 #include "Public/Layer/Layer.h"
 #include "Public/Input.h"

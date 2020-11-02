@@ -32,6 +32,7 @@ namespace JEngine {
 	void Application::OnEvent(Event& e) {
 		EventDispatcher dispatcher(e);
 		dispatcher.DispatchEvent<WindowCloseEvent>(EVENT_BIND_FUNCTION(Application::OnWindowCloseEvent));
+		dispatcher.DispatchEvent<WindowResizeEvent>(EVENT_BIND_FUNCTION(Application::OnWindowResizeEvent));
 		// JE_CORE_INFO("{0}", e);
 
 		// Back trace layer to get the response layer
@@ -67,10 +68,14 @@ namespace JEngine {
 			Timestep deltatime = currentTimeSinceGameStart - m_LastFrameTime;
 			m_LastFrameTime = currentTimeSinceGameStart;
 
-			// Update Objects Based on layer order
-			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate(deltatime);
-			
+			// Save CPU budget when not need to be rendered
+			if (!m_Minimized)
+			{
+				// Update Objects Based on layer order
+				for (Layer* layer : m_LayerStack)
+					layer->OnUpdate(deltatime);
+			}
+
 			m_ImguiLayer->begin();
 			for (Layer* layer : m_LayerStack)
 			{
@@ -91,4 +96,20 @@ namespace JEngine {
 		m_Running = false;
 		return true;
 	}
+
+	bool Application::OnWindowResizeEvent(WindowResizeEvent& e)
+	{
+		// When Window Minimized
+		if (e.GetWindowHeight() == 0 || e.GetWindowWidth() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+		Renderer::OnWindowResize(e.GetWindowWidth(), e.GetWindowHeight());
+
+		return false;
+	}
+
 }

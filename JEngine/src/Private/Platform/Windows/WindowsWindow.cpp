@@ -151,6 +151,7 @@ namespace JEngine
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
+		// TODO: SwapBuffers shouldn't be triggered when window minimized
 		m_RenderContext->SwapBuffers();
 	}
 

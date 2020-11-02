@@ -8,6 +8,7 @@ namespace JEngine
 	{
 	public:
 		OrthographicCamera(float left, float right, float bottom, float top);
+		void SetProjection(float left, float right, float bottom, float top);
 
 		void SetPosition(const glm::vec3& position) { m_Position = position; RecalculateViewMatrix(); }
 		inline const glm::vec3& GetPosition() const { return m_Position; }
@@ -15,6 +16,8 @@ namespace JEngine
 		void SetRotation(float rotation) { m_Rotation = rotation; RecalculateViewMatrix(); }
 		inline const float GetRotation() const { return m_Rotation; }
 		
+
+
 		inline const glm::mat4& GetViewMatrix() const { return m_ViewMatrix; }
 		inline const glm::mat4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
 		inline const glm::mat4& GetViewProjectionMatrix() const { return m_ViewProjectionMatrix; }

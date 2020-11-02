@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Public\Camera\OrthographicCameraController.h" />
     <ClInclude Include="ThirdParty\StbImage\stb_image.h" />
     <ClInclude Include="ThirdParty\glm\glm\common.hpp" />
     <ClInclude Include="ThirdParty\glm\glm\detail\_features.hpp" />
@@ -586,6 +587,7 @@
     <ClInclude Include="src\Public\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Private\Camera\OrthographicCameraController.cpp" />
     <ClCompile Include="ThirdParty\StbImage\stb_image.cpp" />
     <ClCompile Include="src\Private\Application.cpp" />
     <ClCompile Include="src\Private\Camera\OrthographicCamera.cpp" />
