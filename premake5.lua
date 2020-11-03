@@ -38,8 +38,9 @@ project "JEngine"
 
     files
     {
+        "%{prj.name}/src/Public/**.h",
+        "%{prj.name}/src/Private/**.cpp",
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp",
         "%{prj.name}/ThirdParty/StbImage/**.cpp",
         "%{prj.name}/ThirdParty/StbImage/**.h",
         "%{prj.name}/ThirdParty/glm/glm/**.hpp",
@@ -55,6 +56,7 @@ project "JEngine"
     {
         "%{prj.name}/ThirdParty/SpdLog/include",
         "%{prj.name}/src/Public",
+        "%{prj.name}/src",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.Imgui}",
@@ -115,6 +117,7 @@ project "Sandbox"
     {
         "JEngine/ThirdParty/SpdLog/include",
         "JEngine/src",
+        "JEngine/src/Public",
         "JEngine/ThirdParty",
         "%{IncludeDir.glm}"
     }

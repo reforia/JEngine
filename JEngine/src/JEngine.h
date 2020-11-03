@@ -2,13 +2,13 @@
 
 
 // FOR USE BY OTHER APPLICATIONS
-#include "Public/Application.h"
-#include "Public/Log.h"
-#include "Public/MouseButtonCode.h"
+#include "Public/Core/Application.h"
+#include "Public/Core/Log.h"
+#include "Public/Core/MouseButtonCode.h"
 #include "Public/Camera/OrthographicCameraController.h"
-#include "Public/KeyCodes.h"
+#include "Public/Core/KeyCodes.h"
 #include "Public/Layer/Layer.h"
-#include "Public/Input.h"
+#include "Public/Core/Input.h"
 #include "Public/Layer/ImguiLayer.h"
 
 //------RENDERING--------
@@ -22,5 +22,5 @@
 
 
 //------MAIN ENTRY-------
-#include "Public/EntryPoint.h"
+#include "Public/Core/EntryPoint.h"
 //------MAIN ENTRY-------

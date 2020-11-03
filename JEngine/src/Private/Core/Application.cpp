@@ -1,8 +1,8 @@
 #include "JE_PCH.h"
-#include "Application.h"
+#include "Core/Application.h"
 #include "Events/Event.h"
 #include "Renderer/Renderer.h"
-#include "Input.h"
+#include "Core/Input.h"
 #include "Layer/ImguiLayer.h"
 #include "Renderer/Buffer.h"
 

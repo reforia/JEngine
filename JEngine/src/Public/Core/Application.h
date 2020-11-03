@@ -2,16 +2,16 @@
 #pragma once
 
 #include "Core.h"
-#include "Events/Event.h"
-#include "Events/ApplicationEvent.h"
+#include "../Events/Event.h"
+#include "../Events/ApplicationEvent.h"
 #include "Window.h"
-#include "Layer/LayerStack.h"
-#include "Layer/ImguiLayer.h"
+#include "../Layer/LayerStack.h"
+#include "../Layer/ImguiLayer.h"
 
-#include "Renderer/Shader.h"
-#include "Renderer/VertexArray.h"
+#include "../Renderer/Shader.h"
+#include "../Renderer/VertexArray.h"
 
-#include "Camera/OrthographicCamera.h"
+#include "../Camera/OrthographicCamera.h"
 
 
 namespace JEngine {

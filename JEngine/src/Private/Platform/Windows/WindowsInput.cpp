@@ -1,7 +1,7 @@
 #include "JE_PCH.h"
 #include "Platform/Windows/WindowsInput.h"
 
-#include "Application.h"
+#include "Core/Application.h"
 #include "GLFW/glfw3.h"
 
 namespace JEngine

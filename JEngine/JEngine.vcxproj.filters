@@ -34,6 +34,9 @@
     <Filter Include="src\Private\Camera">
       <UniqueIdentifier>{AFF3EB1E-9BD7-AC74-0438-A7C7F03A97F6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Private\Core">
+      <UniqueIdentifier>{CF4932CA-BB42-511C-E474-36A1D0CC3028}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Private\Layer">
       <UniqueIdentifier>{23D11611-8FE7-14A7-D85E-A0C844B4E52E}</UniqueIdentifier>
     </Filter>
@@ -1308,20 +1311,38 @@
     <ClInclude Include="src\JEngine.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Public\Application.h">
-      <Filter>src\Public</Filter>
-    </ClInclude>
     <ClInclude Include="src\Public\Camera\OrthographicCamera.h">
       <Filter>src\Public\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="src\Public\Core.h">
-      <Filter>src\Public</Filter>
+    <ClInclude Include="src\Public\Camera\OrthographicCameraController.h">
+      <Filter>src\Public\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Public\Core\Application.h">
+      <Filter>src\Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Public\Core\Core.h">
+      <Filter>src\Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Public\Core\EntryPoint.h">
+      <Filter>src\Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Public\Core\Input.h">
+      <Filter>src\Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Public\Core\KeyCodes.h">
+      <Filter>src\Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Public\Core\Log.h">
+      <Filter>src\Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Public\Core\MouseButtonCode.h">
+      <Filter>src\Public\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Public\Core\Timestep.h">
       <Filter>src\Public\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Public\EntryPoint.h">
-      <Filter>src\Public</Filter>
+    <ClInclude Include="src\Public\Core\Window.h">
+      <Filter>src\Public\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Public\Events\ApplicationEvent.h">
       <Filter>src\Public\Events</Filter>
@@ -1335,13 +1356,7 @@
     <ClInclude Include="src\Public\Events\MouseEvent.h">
       <Filter>src\Public\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Public\Input.h">
-      <Filter>src\Public</Filter>
-    </ClInclude>
     <ClInclude Include="src\Public\JE_PCH.h">
-      <Filter>src\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Public\KeyCodes.h">
       <Filter>src\Public</Filter>
     </ClInclude>
     <ClInclude Include="src\Public\Layer\ImguiLayer.h">
@@ -1352,12 +1367,6 @@
     </ClInclude>
     <ClInclude Include="src\Public\Layer\LayerStack.h">
       <Filter>src\Public\Layer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Public\Log.h">
-      <Filter>src\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Public\MouseButtonCode.h">
-      <Filter>src\Public</Filter>
     </ClInclude>
     <ClInclude Include="src\Public\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Public\Platform\OpenGL</Filter>
@@ -1407,23 +1416,25 @@
     <ClInclude Include="src\Public\Renderer\VertexArray.h">
       <Filter>src\Public\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Public\Window.h">
-      <Filter>src\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Public\Camera\OrthographicCameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThirdParty\StbImage\stb_image.cpp">
       <Filter>ThirdParty\StbImage</Filter>
     </ClCompile>
-    <ClCompile Include="src\Private\Application.cpp">
-      <Filter>src\Private</Filter>
-    </ClCompile>
     <ClCompile Include="src\Private\Camera\OrthographicCamera.cpp">
       <Filter>src\Private\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="src\Private\ImguiBuild.cpp">
-      <Filter>src\Private</Filter>
+    <ClCompile Include="src\Private\Camera\OrthographicCameraController.cpp">
+      <Filter>src\Private\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Private\Core\Application.cpp">
+      <Filter>src\Private\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Private\Core\ImguiBuild.cpp">
+      <Filter>src\Private\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Private\Core\Log.cpp">
+      <Filter>src\Private\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Private\JE_PCH.cpp">
       <Filter>src\Private</Filter>
@@ -1436,9 +1447,6 @@
     </ClCompile>
     <ClCompile Include="src\Private\Layer\LayerStack.cpp">
       <Filter>src\Private\Layer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Private\Log.cpp">
-      <Filter>src\Private</Filter>
     </ClCompile>
     <ClCompile Include="src\Private\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Private\Platform\OpenGL</Filter>
@@ -1485,6 +1493,5 @@
     <ClCompile Include="src\Private\Renderer\VertexArray.cpp">
       <Filter>src\Private\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Private\Camera\OrthographicCameraController.cpp" />
   </ItemGroup>
 </Project>

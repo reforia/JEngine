@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>JE_PCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;JE_PLATFORM_WINDOWS;JE_BUILD_DLL;GLFW_INCLUDE_NONE;JE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>ThirdParty\SpdLog\include;src\Public;ThirdParty\GLFW\include;ThirdParty\Glad\include;ThirdParty\imgui;ThirdParty\glm;ThirdParty\StbImage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>ThirdParty\SpdLog\include;src\Public;src;ThirdParty\GLFW\include;ThirdParty\Glad\include;ThirdParty\imgui;ThirdParty\glm;ThirdParty\StbImage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -97,7 +97,7 @@
       <PrecompiledHeaderFile>JE_PCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;JE_PLATFORM_WINDOWS;JE_BUILD_DLL;GLFW_INCLUDE_NONE;JE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>ThirdParty\SpdLog\include;src\Public;ThirdParty\GLFW\include;ThirdParty\Glad\include;ThirdParty\imgui;ThirdParty\glm;ThirdParty\StbImage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>ThirdParty\SpdLog\include;src\Public;src;ThirdParty\GLFW\include;ThirdParty\Glad\include;ThirdParty\imgui;ThirdParty\glm;ThirdParty\StbImage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -121,7 +121,7 @@
       <PrecompiledHeaderFile>JE_PCH.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;JE_PLATFORM_WINDOWS;JE_BUILD_DLL;GLFW_INCLUDE_NONE;JE_DISTRIBUTION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>ThirdParty\SpdLog\include;src\Public;ThirdParty\GLFW\include;ThirdParty\Glad\include;ThirdParty\imgui;ThirdParty\glm;ThirdParty\StbImage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>ThirdParty\SpdLog\include;src\Public;src;ThirdParty\GLFW\include;ThirdParty\Glad\include;ThirdParty\imgui;ThirdParty\glm;ThirdParty\StbImage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -140,7 +140,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Public\Camera\OrthographicCameraController.h" />
     <ClInclude Include="ThirdParty\StbImage\stb_image.h" />
     <ClInclude Include="ThirdParty\glm\glm\common.hpp" />
     <ClInclude Include="ThirdParty\glm\glm\detail\_features.hpp" />
@@ -551,23 +550,25 @@
     <ClInclude Include="ThirdParty\glm\glm\vec4.hpp" />
     <ClInclude Include="ThirdParty\glm\glm\vector_relational.hpp" />
     <ClInclude Include="src\JEngine.h" />
-    <ClInclude Include="src\Public\Application.h" />
     <ClInclude Include="src\Public\Camera\OrthographicCamera.h" />
-    <ClInclude Include="src\Public\Core.h" />
+    <ClInclude Include="src\Public\Camera\OrthographicCameraController.h" />
+    <ClInclude Include="src\Public\Core\Application.h" />
+    <ClInclude Include="src\Public\Core\Core.h" />
+    <ClInclude Include="src\Public\Core\EntryPoint.h" />
+    <ClInclude Include="src\Public\Core\Input.h" />
+    <ClInclude Include="src\Public\Core\KeyCodes.h" />
+    <ClInclude Include="src\Public\Core\Log.h" />
+    <ClInclude Include="src\Public\Core\MouseButtonCode.h" />
     <ClInclude Include="src\Public\Core\Timestep.h" />
-    <ClInclude Include="src\Public\EntryPoint.h" />
+    <ClInclude Include="src\Public\Core\Window.h" />
     <ClInclude Include="src\Public\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Public\Events\Event.h" />
     <ClInclude Include="src\Public\Events\KeyEvent.h" />
     <ClInclude Include="src\Public\Events\MouseEvent.h" />
-    <ClInclude Include="src\Public\Input.h" />
     <ClInclude Include="src\Public\JE_PCH.h" />
-    <ClInclude Include="src\Public\KeyCodes.h" />
     <ClInclude Include="src\Public\Layer\ImguiLayer.h" />
     <ClInclude Include="src\Public\Layer\Layer.h" />
     <ClInclude Include="src\Public\Layer\LayerStack.h" />
-    <ClInclude Include="src\Public\Log.h" />
-    <ClInclude Include="src\Public\MouseButtonCode.h" />
     <ClInclude Include="src\Public\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Public\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Public\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -584,21 +585,20 @@
     <ClInclude Include="src\Public\Renderer\Shader.h" />
     <ClInclude Include="src\Public\Renderer\Texture.h" />
     <ClInclude Include="src\Public\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Public\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Private\Camera\OrthographicCameraController.cpp" />
     <ClCompile Include="ThirdParty\StbImage\stb_image.cpp" />
-    <ClCompile Include="src\Private\Application.cpp" />
     <ClCompile Include="src\Private\Camera\OrthographicCamera.cpp" />
-    <ClCompile Include="src\Private\ImguiBuild.cpp" />
+    <ClCompile Include="src\Private\Camera\OrthographicCameraController.cpp" />
+    <ClCompile Include="src\Private\Core\Application.cpp" />
+    <ClCompile Include="src\Private\Core\ImguiBuild.cpp" />
+    <ClCompile Include="src\Private\Core\Log.cpp" />
     <ClCompile Include="src\Private\JE_PCH.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Private\Layer\ImguiLayer.cpp" />
     <ClCompile Include="src\Private\Layer\Layer.cpp" />
     <ClCompile Include="src\Private\Layer\LayerStack.cpp" />
-    <ClCompile Include="src\Private\Log.cpp" />
     <ClCompile Include="src\Private\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Private\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Private\Platform\OpenGL\OpenGLRendererAPI.cpp" />

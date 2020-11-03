@@ -2,7 +2,7 @@
 #pragma once
 
 #include "JE_PCH.h"
-#include "Core.h"
+#include "Core/Core.h"
 
 namespace JEngine {
 	enum class EventType {
